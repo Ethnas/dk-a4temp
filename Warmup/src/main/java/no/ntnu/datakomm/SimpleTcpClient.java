@@ -1,7 +1,10 @@
 package no.ntnu.datakomm;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 /**
  * A Simple TCP client, used as a warm-up exercise for assignment A4.
@@ -116,6 +119,7 @@ public class SimpleTcpClient {
         boolean connected;
         try {
             clientSocket = new Socket(host, port);
+            clientSocket.setSoTimeout(10 * 1000);
             connected = true;
         }
         catch (IOException e) {
@@ -137,8 +141,29 @@ public class SimpleTcpClient {
         // * Connection closed by remote host (server shutdown)
         // * Internet connection lost, timeout in transmission
         // * Connection not opened.
-        // * What is the request is null or empty?
-        return false;
+        // * What if the request is null or empty?
+        boolean sent;
+        try {
+            if (request != null && !(request.equals(""))) {
+                if (!clientSocket.isClosed() && clientSocket.isConnected()) {
+                    OutputStream out = clientSocket.getOutputStream();
+                    PrintWriter writer = new PrintWriter(out, true);
+                    writer.println(request);
+                    sent = true;
+                }
+                else {
+                    sent = false;
+                }
+            }
+            else {
+                sent = false;
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Socket send request error: " + e.getMessage());
+            sent = false;
+        }
+        return sent;
     }
 
     /**
@@ -150,6 +175,7 @@ public class SimpleTcpClient {
     private String readResponseFromServer() {
         // TODO - implement this method
         // Similarly to other methods, exception can happen while trying to read the input stream of the TCP Socket
+
         return null;
     }
 
