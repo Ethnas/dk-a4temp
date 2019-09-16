@@ -1,4 +1,4 @@
-package no.ntnu.datakomm.chat;
+package test.java.no.ntnu.datakomm.chat;
 
 import no.ntnu.datakomm.chat.helpers.DummyResponseCounter;
 import no.ntnu.datakomm.chat.helpers.DummyMsgReceiver;
