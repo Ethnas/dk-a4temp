@@ -1,4 +1,4 @@
-package no.ntnu.datakomm;
+package main.java.no.ntnu.datakomm;
 
 /**
  * A class used to test whether the server can handle multiple TCP client simultaneously (a multi-threaded server)
@@ -25,7 +25,7 @@ public class MultiClientTest
      */
     private static void startNewClient()
     {
-        final no.ntnu.datakomm.SimpleTcpClient client = new no.ntnu.datakomm.SimpleTcpClient();
+        final main.java.no.ntnu.datakomm.SimpleTcpClient client = new main.java.no.ntnu.datakomm.SimpleTcpClient();
         Runnable taskToBeExecutedOnAnotherThread = new Runnable()
         {
             public void run()

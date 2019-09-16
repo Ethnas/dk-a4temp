@@ -1,8 +1,8 @@
-package no.ntnu.datakomm;
+package main.java.no.ntnu.datakomm;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
+
 
 /**
  * A Simple TCP client, used as a warm-up exercise for assignment A4.
@@ -103,7 +103,16 @@ public class SimpleTcpClient {
      * @return True on success, false otherwise
      */
     private boolean closeConnection() {
-        return false;
+        boolean closed;
+        try {
+            clientSocket.close();
+            closed = clientSocket.isClosed();
+        }
+        catch (IOException e) {
+            System.out.println("Socket close error: " + e.getMessage());
+            closed = false;
+        }
+        return closed;
     }
 
     /**
