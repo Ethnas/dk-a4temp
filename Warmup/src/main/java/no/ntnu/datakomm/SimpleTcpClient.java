@@ -1,5 +1,8 @@
 package no.ntnu.datakomm;
 
+import java.io.IOException;
+import java.net.Socket;
+
 /**
  * A Simple TCP client, used as a warm-up exercise for assignment A4.
  */
@@ -8,6 +11,7 @@ public class SimpleTcpClient {
     private static final String HOST = "localhost";
     // TCP port
     private static final int PORT = 1301;
+    private Socket clientSocket;
 
     /**
      * Run the TCP Client.
@@ -19,7 +23,8 @@ public class SimpleTcpClient {
         SimpleTcpClient client = new SimpleTcpClient();
         try {
             client.run();
-        } catch (InterruptedException e) {
+        }
+        catch (InterruptedException e) {
             log("Client interrupted");
             Thread.currentThread().interrupt();
         }
