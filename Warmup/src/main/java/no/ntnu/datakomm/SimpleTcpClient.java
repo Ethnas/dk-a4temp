@@ -113,9 +113,16 @@ public class SimpleTcpClient {
      * @return True when connection established, false otherwise
      */
     private boolean connectToServer(String host, int port) {
-        // TODO - implement this method
-        // Remember to catch all possible exceptions that the Socket class can throw.
-        return false;
+        boolean connected;
+        try {
+            clientSocket = new Socket(host, port);
+            connected = true;
+        }
+        catch (IOException e) {
+            System.out.println("Socket error: " + e.getMessage());
+            connected = false;
+        }
+        return connected;
     }
 
     /**
