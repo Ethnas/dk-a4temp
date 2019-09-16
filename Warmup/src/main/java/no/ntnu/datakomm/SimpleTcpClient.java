@@ -14,6 +14,7 @@ public class SimpleTcpClient {
      *
      * @param args Command line arguments. Not used.
      */
+    @SuppressWarnings("checkstyle:LeftCurly")
     public static void main(String[] args) {
         SimpleTcpClient client = new SimpleTcpClient();
         try {
@@ -58,25 +59,32 @@ public class SimpleTcpClient {
                                 // When the connection is closed, try to send one more message. It should fail.
                                 if (!sendRequestToServer("2+2")) {
                                     log("Sending another message after closing the connection failed as expected");
-                                } else {
+                                }
+                                else {
                                     log("ERROR: sending a message after closing the connection did not fail!");
                                 }
-                            } else {
+                            }
+                            else {
                                 log("ERROR: Failed to stop conversation");
                             }
-                        } else {
+                        }
+                        else {
                             log("ERROR: Failed to receive server's response!");
                         }
-                    } else {
+                    }
+                    else {
                         log("ERROR: Failed to send invalid message to server!");
                     }
-                } else {
+                }
+                else {
                     log("ERROR: Failed to receive server's response!");
                 }
-            } else {
+            }
+            else {
                 log("ERROR: Failed to send valid message to server!");
             }
-        } else {
+        }
+        else {
             log("ERROR: Failed to connect to the server");
         }
 
