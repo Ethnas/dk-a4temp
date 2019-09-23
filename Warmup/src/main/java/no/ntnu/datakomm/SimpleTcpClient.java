@@ -126,7 +126,7 @@ public class SimpleTcpClient {
         boolean connected;
         try {
             clientSocket = new Socket(host, port);
-            clientSocket.setSoTimeout(10 * 1000);
+            clientSocket.setSoTimeout(100 * 1000);
             connected = true;
         }
         catch (IOException e) {
