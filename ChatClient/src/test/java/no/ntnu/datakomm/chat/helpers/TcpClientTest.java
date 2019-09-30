@@ -1,11 +1,13 @@
-package test.java.no.ntnu.datakomm.chat;
+package no.ntnu.datakomm.chat.helpers;
 
+import no.ntnu.TCPClient;
+import no.ntnu.TextMessage;
 import no.ntnu.datakomm.chat.helpers.DummyResponseCounter;
 import no.ntnu.datakomm.chat.helpers.DummyMsgReceiver;
 import no.ntnu.datakomm.chat.helpers.DummySupportedReceiver;
 import no.ntnu.datakomm.chat.helpers.DummyUserListingReceiver;
 import org.junit.Test;
-import org.junit.jupiter.api.Test;
+
 
 import static org.junit.Assert.*;
 

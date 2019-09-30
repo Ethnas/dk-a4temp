@@ -1,7 +1,7 @@
 package no.ntnu.datakomm.chat.helpers;
 
-import no.ntnu.datakomm.ChatListener;
-import no.ntnu.datakomm.TextMessage;
+import no.ntnu.ChatListener;
+import no.ntnu.TextMessage;
 
 /**
  * A class that just remembers what responses have been received
