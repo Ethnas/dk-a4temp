@@ -23,7 +23,6 @@ public class TCPClient {
      * @return True on success, false otherwise
      */
     public boolean connect(String host, int port) {
-        // TODO Step 1: implement this method
         // Hint: Remember to process all exceptions and return false on error
         // Hint: Remember to set up all the necessary input/output stream variables
         boolean connected;
@@ -57,7 +56,7 @@ public class TCPClient {
      * @return true if the connection is active (opened), false if not.
      */
     public boolean isConnectionActive() {
-        return connection != null;
+        return !connection.isClosed();
     }
 
     /**
@@ -69,7 +68,15 @@ public class TCPClient {
     private boolean sendCommand(String cmd) {
         // TODO Step 2: Implement this method
         // Hint: Remember to check if connection is active
-        return false;
+        boolean sent;
+        if (this.isConnectionActive()) {
+            toServer.println(cmd);
+            sent = true;
+        }
+        else {
+            sent = false;
+        }
+        return sent;
     }
 
     /**
