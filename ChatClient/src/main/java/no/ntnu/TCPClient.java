@@ -56,7 +56,14 @@ public class TCPClient {
      * @return true if the connection is active (opened), false if not.
      */
     public boolean isConnectionActive() {
-        return !connection.isClosed();
+        boolean connectionActive;
+        if (connection == null) {
+            connectionActive = false;
+        }
+        else {
+            connectionActive = true;
+        }
+        return connectionActive;
     }
 
     /**
@@ -114,6 +121,7 @@ public class TCPClient {
     public void tryLogin(String username) {
         // TODO Step 3: implement this method
         // Hint: Reuse sendCommand() method
+        
     }
 
     /**
