@@ -1,7 +1,7 @@
 package no.ntnu.datakomm.chat.helpers;
 
-import no.ntnu.datakomm.ChatListener;
-import no.ntnu.datakomm.TextMessage;
+import no.ntnu.ChatListener;
+import no.ntnu.TextMessage;
 
 /**
  * An empty template class for ChatListener. Can be used as a base class to
