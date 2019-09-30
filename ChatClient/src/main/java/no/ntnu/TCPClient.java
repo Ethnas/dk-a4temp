@@ -66,10 +66,9 @@ public class TCPClient {
      * @return true on success, false otherwise
      */
     private boolean sendCommand(String cmd) {
-        // TODO Step 2: Implement this method
         // Hint: Remember to check if connection is active
         boolean sent;
-        if (this.isConnectionActive()) {
+        if (this.isConnectionActive() && !cmd.isEmpty()) {
             toServer.println(cmd);
             sent = true;
         }
@@ -86,10 +85,25 @@ public class TCPClient {
      * @return true if message sent, false on error
      */
     public boolean sendPublicMessage(String message) {
-        // TODO Step 2: implement this method
         // Hint: Reuse sendCommand() method
         // Hint: update lastError if you want to store the reason for the error.
-        return false;
+        boolean sent;
+        if (!message.isEmpty()) {
+            String[] messageParts = message.split(" ", 2);
+            if (messageParts.length == 2 && messageParts[0].equals("msg")) {
+                this.sendCommand(message);
+                sent = true;
+            }
+            else {
+                lastError = "No message or message command not specified.";
+                sent = false;
+            }
+        }
+        else {
+            lastError = "Message was empty string.";
+            sent = false;
+        }
+        return sent;
     }
 
     /**
