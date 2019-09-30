@@ -1,4 +1,4 @@
-package no.ntnu.datakomm.chat;
+package no.ntnu;
 
 import java.util.Objects;
 

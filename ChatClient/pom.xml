@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>no.ntnu.datakomm.chat.App</mainClass>
+        <mainClass>no.ntnu.datakomm.App</mainClass>
     </properties>
 
     <organization>

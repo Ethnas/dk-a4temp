@@ -2,7 +2,7 @@ package no.ntnu.datakomm.chat.helpers;
 
 import java.util.LinkedList;
 import java.util.List;
-import no.ntnu.datakomm.chat.TextMessage;
+import no.ntnu.datakomm.TextMessage;
 
 /**
  * Receive and buffer messages. We can check whether a message from specific
