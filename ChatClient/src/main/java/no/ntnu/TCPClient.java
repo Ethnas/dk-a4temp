@@ -181,10 +181,14 @@ public class TCPClient {
                 response = fromServer.readLine();
                 if (response != null) {
                     gotResponse = true;
+                    this.connection = null;
+                    this.fromServer = null;
+                    this.toServer = null;
                 }
             }
             catch (IOException e) {
                 e.printStackTrace();
+                this.disconnect();
             }
         }
         // TODO Step 4: If you get I/O Exception or null from the stream, it means that something has gone wrong
