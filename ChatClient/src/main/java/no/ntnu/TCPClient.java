@@ -273,6 +273,11 @@ public class TCPClient {
                     this.onCmdError(commandToParse[1]);
                     break;
 
+                case "supported":
+                    String[] supportedCommands = commandToParse[1].split(" ");
+                    this.onSupported(supportedCommands);
+                    break;
+
                 default:
                     this.onCmdError("The response from the server could not be recognized.");
             }
