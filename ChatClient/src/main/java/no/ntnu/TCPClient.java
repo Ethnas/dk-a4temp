@@ -281,9 +281,6 @@ public class TCPClient {
                 default:
                     this.onCmdError("The response from the server could not be recognized.");
             }
-            
-            // TODO Step 8: add support for incoming supported command list (type: supported)
-
         }
     }
 
@@ -390,6 +387,8 @@ public class TCPClient {
      * @param commands Commands supported by the server
      */
     private void onSupported(String[] commands) {
-        // TODO Step 8: Implement this method
+        for (ChatListener l : listeners) {
+            l.onSupportedCommands(commands);
+        }
     }
 }
