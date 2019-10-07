@@ -167,8 +167,7 @@ public class TCPClient {
      * @return one line of text (one command) received from the server
      */
     private String waitServerResponse() {
-        // TODO Step 3: Implement this method
-        String response = null;
+        String response = "";
         boolean gotResponse = false;
         while (this.isConnectionActive() && !gotResponse) {
             try {
@@ -179,7 +178,6 @@ public class TCPClient {
             }
             catch (IOException e) {
                 e.printStackTrace();
-                response = null;
             }
         }
         // TODO Step 4: If you get I/O Exception or null from the stream, it means that something has gone wrong
@@ -224,6 +222,19 @@ public class TCPClient {
             // and act on it.
             // Hint: In Step 3 you need to handle only login-related responses.
             // Hint: In Step 3 reuse onLoginResult() method
+            String[] commandToParse = this.waitServerResponse().split(" ", 2);
+            switch (commandToParse[0]) {
+                case "loginok":
+                    this.onLoginResult(true, " ");
+                    break;
+
+                case "loginerr":
+                    this.onLoginResult(false, commandToParse[1]);
+                    break;
+
+                default:
+                    this.onCmdError("The response from the server could not be recognized.");
+            }
 
             // TODO Step 5: update this method, handle user-list response from the server
             // Hint: In Step 5 reuse onUserList() method
