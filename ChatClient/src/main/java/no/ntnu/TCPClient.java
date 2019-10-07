@@ -104,15 +104,9 @@ public class TCPClient {
         // Hint: update lastError if you want to store the reason for the error.
         boolean sent;
         if (!message.isEmpty()) {
-            String[] messageParts = message.split(" ", 2);
-            if (messageParts.length == 2 && messageParts[0].equals("msg")) {
-                this.sendCommand(message);
-                sent = true;
-            }
-            else {
-                lastError = "No message or message command not specified.";
-                sent = false;
-            }
+            String send = "msg " + message;
+            this.sendCommand(send);
+            sent = true;
         }
         else {
             lastError = "Message was empty string.";
@@ -189,7 +183,7 @@ public class TCPClient {
         while (this.isConnectionActive() && !gotResponse) {
             try {
                 response = fromServer.readLine();
-                if (response != null) {
+                if (!response.isEmpty()) {
                     gotResponse = true;
                 }
             }
