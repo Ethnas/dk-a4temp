@@ -48,8 +48,16 @@ public class TCPClient {
      * that no two threads call this method in parallel.
      */
     public synchronized void disconnect() {
-        // TODO Step 4: implement this method
         // Hint: remember to check if connection is active
+        if (!this.connection.isClosed()) {
+            try {
+                this.connection.close();
+                this.onDisconnect();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
