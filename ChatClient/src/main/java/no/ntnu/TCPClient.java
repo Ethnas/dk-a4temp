@@ -242,6 +242,11 @@ public class TCPClient {
                     this.onLoginResult(false, commandToParse[1]);
                     break;
 
+                case "users":
+                    String[] users = commandToParse[1].split(" ");
+                    this.onUsersList(users);
+                    break;
+
                 default:
                     this.onCmdError("The response from the server could not be recognized.");
             }
