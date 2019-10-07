@@ -152,10 +152,20 @@ public class TCPClient {
      * @return true if message sent, false on error
      */
     public boolean sendPrivateMessage(String recipient, String message) {
-        // TODO Step 6: Implement this method
         // Hint: Reuse sendCommand() method
         // Hint: update lastError if you want to store the reason for the error.
-        return false;
+
+        boolean sent = false;
+        if (recipient.isEmpty() || message.isEmpty()) {
+            lastError = "Recipient or message not specified.";
+        }
+        else {
+            String command = "privmsg " + recipient + " " + message;
+            this.sendCommand(command);
+            sent = true;
+        }
+
+        return sent;
     }
 
 
