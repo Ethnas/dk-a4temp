@@ -201,8 +201,6 @@ public class TCPClient {
                 this.toServer = null;
             }
         }
-        // TODO Step 4: If you get I/O Exception or null from the stream, it means that something has gone wrong
-        // with the stream and hence the socket. Probably a good idea to close the socket in that case.
 
         return response;
     }
@@ -257,18 +255,28 @@ public class TCPClient {
                     this.onUsersList(users);
                     break;
 
+                case "msg":
+                    String[] msgParts = commandToParse[1].split(" ", 2);
+                    this.onMsgReceived(false, msgParts[0], msgParts[1]);
+                    break;
+
+                case "privmsg":
+                    String[] privMsgParts = commandToParse[1].split(" ", 2);
+                    this.onMsgReceived(true, privMsgParts[0], privMsgParts[1]);
+                    break;
+
+                case "msgerr":
+                    this.onMsgError(commandToParse[1]);
+                    break;
+
+                case "cmderror":
+                    this.onCmdError(commandToParse[1]);
+                    break;
+
                 default:
                     this.onCmdError("The response from the server could not be recognized.");
             }
-
-            // TODO Step 5: update this method, handle user-list response from the server
-            // Hint: In Step 5 reuse onUserList() method
-
-            // TODO Step 7: add support for incoming chat messages from other users (types: msg, privmsg)
-            // TODO Step 7: add support for incoming message errors (type: msgerr)
-            // TODO Step 7: add support for incoming command errors (type: cmderr)
-            // Hint for Step 7: call corresponding onXXX() methods which will notify all the listeners
-
+            
             // TODO Step 8: add support for incoming supported command list (type: supported)
 
         }
@@ -343,7 +351,9 @@ public class TCPClient {
      * @param text   Message text
      */
     private void onMsgReceived(boolean priv, String sender, String text) {
-        // TODO Step 7: Implement this method
+        for (ChatListener l : listeners) {
+            l.onMessageReceived(new TextMessage(sender, priv, text));
+        }
     }
 
     /**
@@ -352,7 +362,9 @@ public class TCPClient {
      * @param errMsg Error description returned by the server
      */
     private void onMsgError(String errMsg) {
-        // TODO Step 7: Implement this method
+        for (ChatListener l : listeners) {
+            l.onMessageError(errMsg);
+        }
     }
 
     /**
@@ -361,7 +373,9 @@ public class TCPClient {
      * @param errMsg Error message
      */
     private void onCmdError(String errMsg) {
-        // TODO Step 7: Implement this method
+        for (ChatListener l : listeners) {
+            l.onCommandError(errMsg);
+        }
     }
 
     /**
