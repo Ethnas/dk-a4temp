@@ -29,7 +29,7 @@ public class TCPClient {
         try {
             connection = new Socket(host, port);
             toServer = new PrintWriter(connection.getOutputStream(), true);
-            fromServer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            fromServer = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
             connected = true;
         }
         catch (IOException e) {
